@@ -1,0 +1,1610 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>שקט נפשי מול רשויות המס</title>
+
+    <!-- יבוא פונט Rubik מ-Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      @import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css");
+
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+        font-family: "Rubik", sans-serif;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        direction: rtl;
+        background-color: #f4f4f4;
+      }
+
+      /* סרגל ניווט עליון */
+      header {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 110px;
+        background-color: rgba(13, 35, 58, 0.25);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 40px;
+        z-index: 1000;
+        transition:
+          background-color 0.35s ease,
+          box-shadow 0.35s ease,
+          border-color 0.35s ease;
+      }
+
+      header.scrolled {
+        background-color: rgba(13, 35, 58, 0.96);
+        border-bottom: 1px solid rgba(251, 192, 45, 0.3);
+        box-shadow: 0 4px 25px rgba(0, 0, 0, 0.3);
+      }
+
+      .logo {
+        position: absolute;
+        right: -80px;
+        top: -20px;
+        z-index: 20;
+      }
+
+      .logo-img {
+        height: 165px;
+        width: auto;
+        display: block;
+        object-fit: contain;
+      }
+
+      nav {
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+      }
+
+      nav ul {
+        display: flex;
+        list-style: none;
+        gap: 32px;
+        align-items: center;
+      }
+
+      nav a {
+        position: relative;
+        text-decoration: none;
+        color: #ffffff;
+        font-weight: 500;
+        padding-bottom: 6px;
+        transition: color 0.3s ease;
+      }
+
+      nav a::after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        width: 0%;
+        height: 2.5px;
+        background-color: #fbc02d;
+        transition: width 0.35s ease-in-out;
+      }
+
+      nav a:hover::after,
+      nav a.active::after {
+        width: 100%;
+      }
+
+      nav a:hover,
+      nav a.active {
+        color: #fbc02d;
+      }
+
+      .btn-header {
+        margin-right: auto;
+        border: 2px solid #fbc02d;
+        padding: 8px 18px;
+        background: transparent;
+        font-weight: 700;
+        font-size: 14px;
+        cursor: pointer;
+        color: #fbc02d;
+        transition: all 0.2s;
+        border-radius: 4px;
+        text-decoration: none;
+        display: inline-block;
+      }
+
+      .btn-header:hover {
+        border-color: #fbc02d;
+        color: #fbc02d;
+        transform: translateY(-2px);
+      }
+
+      /* אזור Hero */
+      .hero {
+        position: relative;
+        height: 100vh;
+        min-height: 500px;
+        background: url("images/homeIMG.png") center/cover no-repeat;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding-top: 110px;
+      }
+
+      .hero-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5);
+      }
+
+      .hero-content {
+        position: relative;
+        z-index: 2;
+        text-align: center;
+        color: #ffffff;
+        max-width: 850px;
+        padding: 0 20px;
+      }
+
+      .hero-title {
+        font-size: 40px;
+        font-weight: 700;
+        margin-bottom: 18px;
+        line-height: 1.3;
+        text-shadow: 0 4px 25px rgba(0, 0, 0, 0.9);
+      }
+
+      .hero-subtitle {
+        font-size: 20px;
+        font-weight: 400;
+        line-height: 1.6;
+        margin-bottom: 8px;
+        text-shadow: 0 2px 20px rgba(0, 0, 0, 0.85);
+      }
+
+      .hero-highlight {
+        font-size: 28px;
+        font-weight: 700;
+        color: #fbc02d;
+        margin-bottom: 30px;
+        text-shadow: 0 2px 20px rgba(0, 0, 0, 0.9);
+      }
+
+      .btn-main {
+        background-color: #fbc02d;
+        color: #0d233a;
+        border: 1.5px solid #ffffff;
+        padding: 14px 38px;
+        font-size: 16px;
+        font-weight: 700;
+        cursor: pointer;
+        border-radius: 8px;
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.25);
+        transition: all 0.3s ease;
+        text-decoration: none;
+        display: inline-block;
+      }
+
+      .btn-main:hover {
+        background-color: #fbc02d;
+        color: #0d233a;
+        border-color: #fbc02d;
+        transform: translateY(-3px);
+        box-shadow: 0 10px 30px rgba(251, 192, 45, 0.4);
+      }
+
+      /* קטע שירותים */
+      .services-section {
+        background-color: #f8f9fa;
+        padding: 80px 20px;
+        text-align: center;
+      }
+
+      .services-container {
+        max-width: 1100px;
+        margin: 0 auto;
+      }
+
+      .section-tagline {
+        color: #fbc02d;
+        background-color: rgba(251, 192, 45, 0.15);
+        padding: 6px 16px;
+        border-radius: 20px;
+        font-size: 13px;
+        font-weight: 700;
+        letter-spacing: 1px;
+        display: inline-block;
+        margin-bottom: 12px;
+      }
+
+      .section-title {
+        font-size: 32px;
+        font-weight: 700;
+        color: #0d233a;
+        margin-bottom: 50px;
+      }
+
+      .services-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 30px;
+        margin-bottom: 45px;
+      }
+
+      .service-card {
+        background: #ffffff;
+        padding: 40px 25px;
+        border-radius: 12px;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+        border: 1px solid #eef2f5;
+        transition: all 0.3s ease;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .service-card:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 12px 30px rgba(0, 0, 0, 0.1);
+        border-color: #fbc02d;
+      }
+
+      .service-icon {
+        width: 56px;
+        height: 56px;
+        background-color: #f1f5f9;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 20px;
+        transition: all 0.3s ease;
+      }
+
+      .service-card:hover .service-icon {
+        background-color: #0d233a;
+      }
+
+      .service-card:hover .service-icon svg {
+        stroke: #ffffff;
+      }
+
+      .service-card h3 {
+        font-size: 20px;
+        font-weight: 700;
+        color: #0d233a;
+        margin-bottom: 12px;
+      }
+
+      .service-card p {
+        font-size: 15px;
+        line-height: 1.6;
+        color: #555555;
+      }
+
+      /* קטע עלינו */
+      .about-section {
+        background-color: #ffffff;
+        padding: 90px 20px;
+      }
+
+      .about-container {
+        max-width: 1100px;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 50px;
+        align-items: center;
+      }
+
+      .about-image-wrapper {
+        position: relative;
+      }
+
+      .about-img {
+        width: 100%;
+        height: 420px;
+        object-fit: cover;
+        border-radius: 20px 20px 20px 80px;
+        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.08);
+      }
+
+      .about-badge {
+        position: absolute;
+        bottom: -20px;
+        right: -20px;
+        background-color: #0d233a;
+        color: #ffffff;
+        padding: 20px 25px;
+        border-radius: 16px;
+        border-right: 5px solid #fbc02d;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+      }
+
+      .about-badge h4 {
+        font-size: 24px;
+        color: #fbc02d;
+        font-weight: 700;
+      }
+
+      .about-badge p {
+        font-size: 14px;
+        color: #eef2f5;
+      }
+
+      .about-content {
+        text-align: right;
+      }
+
+      .about-content .section-tagline {
+        margin-bottom: 15px;
+      }
+
+      .about-title {
+        font-size: 34px;
+        color: #0d233a;
+        font-weight: 700;
+        margin-bottom: 20px;
+        line-height: 1.3;
+      }
+
+      .about-text {
+        font-size: 16px;
+        line-height: 1.8;
+        color: #555555;
+        margin-bottom: 25px;
+      }
+
+      .about-features {
+        list-style: none;
+        display: flex;
+        flex-direction: column;
+        gap: 14px;
+        margin-bottom: 30px;
+      }
+
+      .about-features li {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        font-size: 15px;
+        font-weight: 500;
+        color: #0d233a;
+      }
+
+      .about-features li svg {
+        flex-shrink: 0;
+        background: rgba(251, 192, 45, 0.25);
+        border-radius: 50%;
+        padding: 4px;
+      }
+
+      /* סקשן המלצות */
+      .testimonials-section {
+        background-color: #f8f9fa;
+        padding: 80px 20px;
+        text-align: center;
+      }
+
+      .testimonials-container {
+        max-width: 1100px;
+        margin: 0 auto;
+      }
+
+      .testimonials-slider {
+        display: flex;
+        gap: 25px;
+        margin-top: 40px;
+        padding: 15px 5px 25px 5px;
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        scroll-behavior: smooth;
+        -webkit-overflow-scrolling: touch;
+      }
+
+      .testimonials-slider::-webkit-scrollbar {
+        height: 6px;
+      }
+
+      .testimonials-slider::-webkit-scrollbar-track {
+        background: #e2eef5;
+        border-radius: 10px;
+      }
+
+      .testimonials-slider::-webkit-scrollbar-thumb {
+        background: #fbc02d;
+        border-radius: 10px;
+      }
+
+      .testimonial-card {
+        flex: 0 0 320px;
+        scroll-snap-align: start;
+        background: #ffffff;
+        border: 1px solid #eef2f5;
+        border-radius: 16px;
+        padding: 30px 25px;
+        text-align: right;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.04);
+        transition:
+          transform 0.3s ease,
+          border-color 0.3s ease,
+          box-shadow 0.3s ease;
+      }
+
+      .testimonial-card:hover {
+        transform: translateY(-5px);
+        border-color: #fbc02d;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+      }
+
+      .quote-icon {
+        color: #fbc02d;
+        font-size: 38px;
+        line-height: 1;
+        margin-bottom: 10px;
+        font-weight: bold;
+      }
+
+      .testimonial-text {
+        font-size: 15px;
+        line-height: 1.7;
+        color: #555555;
+        margin-bottom: 20px;
+      }
+
+      .testimonial-author {
+        border-top: 1px solid #f0f0f0;
+        padding-top: 15px;
+      }
+
+      .author-name {
+        font-size: 16px;
+        font-weight: 700;
+        color: #0d233a;
+      }
+
+      .author-role {
+        font-size: 13px;
+        color: #777777;
+      }
+
+      /* סקשן צור קשר */
+      .contact-section {
+        background-color: #ffffff;
+        padding: 90px 20px;
+      }
+
+      .contact-container {
+        max-width: 1100px;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 50px;
+        align-items: start;
+      }
+
+      .contact-info {
+        text-align: right;
+      }
+
+      .contact-title {
+        font-size: 34px;
+        font-weight: 700;
+        color: #0d233a;
+        margin-bottom: 15px;
+        line-height: 1.3;
+      }
+
+      .contact-desc {
+        font-size: 15px;
+        color: #555555;
+        line-height: 1.6;
+        margin-bottom: 35px;
+      }
+
+      .info-list {
+        display: flex;
+        flex-direction: column;
+        gap: 24px;
+      }
+
+      .info-item {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+      }
+
+      .info-icon {
+        width: 48px;
+        height: 48px;
+        background-color: rgba(251, 192, 45, 0.18);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+      }
+
+      .info-text h4 {
+        font-size: 15px;
+        color: #0d233a;
+        font-weight: 700;
+        margin-bottom: 3px;
+      }
+
+      .info-text p,
+      .info-text a {
+        font-size: 14px;
+        color: #555555;
+        text-decoration: none;
+        transition: color 0.2s ease;
+      }
+
+      .info-text a:hover {
+        color: #0d233a;
+        text-decoration: underline;
+      }
+
+      /* טופס יצירת קשר */
+      .contact-form {
+        background-color: #f8f9fa;
+        padding: 40px 32px;
+        border-radius: 16px;
+        border: 1px solid #eef2f5;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+      }
+
+      .form-group {
+        margin-bottom: 20px;
+        text-align: right;
+      }
+
+      .form-group label {
+        display: block;
+        font-size: 14px;
+        font-weight: 500;
+        color: #0d233a;
+        margin-bottom: 8px;
+      }
+
+      .form-control {
+        width: 100%;
+        padding: 12px 16px;
+        font-size: 15px;
+        border: 1.5px solid #e2e8f0;
+        border-radius: 8px;
+        background-color: #ffffff;
+        transition: all 0.25s ease;
+        outline: none;
+      }
+
+      .form-control:focus {
+        border-color: #fbc02d;
+        box-shadow: 0 0 0 3px rgba(251, 192, 45, 0.2);
+      }
+
+      textarea.form-control {
+        resize: vertical;
+        min-height: 110px;
+      }
+
+      .btn-submit {
+        width: 100%;
+        background-color: #fbc02d;
+        color: #0d233a;
+        border: none;
+        padding: 14px;
+        font-size: 16px;
+        font-weight: 700;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: all 0.25s ease;
+        box-shadow: 0 4px 15px rgba(251, 192, 45, 0.3);
+      }
+
+      .btn-submit:hover {
+        background-color: #e6b025;
+        transform: translateY(-2px);
+        box-shadow: 0 6px 20px rgba(251, 192, 45, 0.4);
+      }
+
+      /*עיצוב הטופס שליחת פרטים*/
+      /* --- עיצוב אזור צור קשר --- */
+      .contact-section {
+        padding: 80px 20px;
+        background-color: #f8fafc;
+      }
+
+      .contact-container {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        gap: 50px;
+        max-width: 1100px;
+        margin: 0 auto;
+      }
+
+      /* צד ימין: פרטי התקשרות */
+      .contact-info {
+        flex: 1;
+      }
+
+      .section-tagline {
+        display: inline-block;
+        background-color: #fef08a;
+        color: #854d0e;
+        font-size: 14px;
+        font-weight: 600;
+        padding: 4px 12px;
+        border-radius: 20px;
+        margin-bottom: 12px;
+      }
+
+      .contact-title {
+        color: #0d233a;
+        font-size: 32px;
+        font-weight: 700;
+        margin-bottom: 12px;
+        line-height: 1.2;
+      }
+
+      .contact-desc {
+        color: #475569;
+        font-size: 16px;
+        line-height: 1.6;
+        margin-bottom: 35px;
+      }
+
+      .info-list {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+      }
+
+      .info-item {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+      }
+
+      .info-icon {
+        width: 48px;
+        height: 48px;
+        background-color: #fef9c3;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+      }
+
+      .info-text h4 {
+        margin: 0 0 2px 0;
+        color: #0d233a;
+        font-size: 15px;
+        font-weight: 700;
+      }
+
+      .info-text p,
+      .info-text a {
+        margin: 0;
+        color: #475569;
+        font-size: 15px;
+        text-decoration: none;
+        transition: color 0.2s;
+      }
+
+      .info-text a:hover {
+        color: #d97706;
+      }
+
+      /* צד שמאל: כרטיס הטופס הקבוע */
+      .contact-card {
+        flex: 1;
+        max-width: 420px;
+        background: #ffffff;
+        border: 1.5px solid #fbc02d;
+        border-radius: 20px;
+        padding: 32px 28px;
+        box-shadow: 0 10px 30px rgba(13, 35, 58, 0.08);
+      }
+
+      .contact-card h3 {
+        margin: 0 0 20px 0;
+        color: #0d233a;
+        font-size: 22px;
+        font-weight: 700;
+        text-align: center;
+      }
+
+      /* עיצוב השדות והטופס */
+      #contactForm {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+      }
+
+      .form-group {
+        display: flex;
+        flex-direction: column;
+      }
+
+      .form-group input,
+      .form-group textarea {
+        width: 100%;
+        padding: 12px 16px;
+        border: 1px solid #cbd5e1;
+        border-radius: 10px;
+        font-size: 15px;
+        font-family: inherit;
+        color: #0d233a;
+        background-color: #f8fafc;
+        box-sizing: border-box;
+        transition: all 0.2s ease;
+      }
+
+      .form-group input:focus,
+      .form-group textarea:focus {
+        outline: none;
+        border-color: #fbc02d;
+        background-color: #ffffff;
+        box-shadow: 0 0 0 3px rgba(251, 192, 45, 0.25);
+      }
+
+      .form-group textarea {
+        resize: vertical;
+        min-height: 90px;
+      }
+
+      /* כפתור שליחה מעוצב */
+      .submit-btn {
+        width: 100%;
+        padding: 14px;
+        background-color: #0d233a;
+        color: #ffffff;
+        border: none;
+        border-radius: 10px;
+        font-size: 16px;
+        font-weight: 700;
+        cursor: pointer;
+        transition: all 0.2s ease;
+        margin-top: 6px;
+      }
+
+      .submit-btn:hover {
+        background-color: #1e3a8a;
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(13, 35, 58, 0.15);
+      }
+
+      .submit-btn:disabled {
+        background-color: #94a3b8;
+        cursor: not-allowed;
+        transform: none;
+      }
+
+      /* התאמה לרשתות ניידות (רספונסיביות) */
+      @media (max-width: 768px) {
+        .contact-container {
+          flex-direction: column;
+          align-items: center;
+        }
+
+        .contact-card {
+          width: 100%;
+          max-width: 100%;
+        }
+      }
+
+      /* פוטר תחתון */
+      footer {
+        background-color: #061321;
+        color: #ffffff;
+        padding: 35px 20px;
+        text-align: center;
+        font-size: 14px;
+        border-top: 2px solid #fbc02d;
+      }
+
+      footer p {
+        color: #94a3b8;
+        font-weight: 400;
+      }
+      /*עיצוב כפתור ליעוץ אישי-מייל טלפון וואצאפ*/
+
+      /* מעטפת הראשית */
+      .quick-contact-wrapper {
+        position: relative;
+        display: inline-block;
+        text-align: center;
+      }
+
+      /* כפתור הפתיחה הצהוב */
+      .quick-contact-toggle {
+        background-color: #fbc02d;
+        color: #0d233a;
+        border: none;
+        border-radius: 30px;
+        padding: 12px 28px;
+        font-size: 16px;
+        font-weight: 700;
+        cursor: pointer;
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        box-shadow: 0 4px 15px rgba(251, 192, 45, 0.4);
+        transition: all 0.3s ease;
+      }
+
+      .quick-contact-toggle:hover {
+        background-color: #f5b000;
+        transform: translateY(-2px);
+        box-shadow: 0 6px 20px rgba(251, 192, 45, 0.5);
+      }
+
+      .toggle-icon {
+        font-size: 12px;
+        transition: transform 0.3s ease;
+      }
+
+      /* מצב מופעל (כאשר הכפתור פתוח) */
+      .quick-contact-wrapper.active .quick-contact-toggle {
+        background-color: #0d233a;
+        color: #ffffff;
+      }
+
+      .quick-contact-wrapper.active .toggle-icon {
+        transform: rotate(180deg);
+      }
+
+      /* התפריט הנפתח */
+      .quick-contact-menu {
+        position: absolute;
+        top: calc(100% + 12px);
+        left: 50%;
+        transform: translateX(-50%) scale(0.8);
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        background-color: #0d233a;
+        padding: 10px 16px;
+        border-radius: 40px;
+        box-shadow: 0 10px 30px rgba(13, 35, 58, 0.3);
+        border: 1px solid rgba(251, 192, 45, 0.3);
+
+        /* הנפשת הסתרה בברירת מחדל */
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+        transition: all 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+      }
+
+      /* הנפשת פתיחה כשהקלאס active קיים */
+      .quick-contact-wrapper.active .quick-contact-menu {
+        opacity: 1;
+        visibility: visible;
+        pointer-events: auto;
+        transform: translateX(-50%) scale(1);
+      }
+
+      /* עיצוב כל כפתור עגול/אליפטי בתפריט */
+      .contact-bubble {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        padding: 8px 16px;
+        border-radius: 25px;
+        text-decoration: none;
+        font-size: 14px;
+        font-weight: 600;
+        transition: all 0.25s ease;
+        white-space: nowrap;
+      }
+
+      .bubble-icon {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      /* גוון כפתור וואטסאפ */
+      .contact-bubble.whatsapp {
+        background-color: #25d366;
+        color: #ffffff;
+      }
+      .contact-bubble.whatsapp:hover {
+        background-color: #1eb855;
+        transform: translateY(-2px);
+      }
+
+      /* גוון כפתור חיוג */
+      .contact-bubble.call {
+        background-color: rgba(255, 255, 255, 0.1);
+        color: #ffffff;
+        border: 1px solid rgba(255, 255, 255, 0.3);
+      }
+      .contact-bubble.call:hover {
+        background-color: #fbc02d;
+        color: #0d233a;
+        border-color: #fbc02d;
+        transform: translateY(-2px);
+      }
+
+      /* גוון כפתור מייל */
+      .contact-bubble.email {
+        background-color: rgba(255, 255, 255, 0.1);
+        color: #ffffff;
+        border: 1px solid rgba(255, 255, 255, 0.3);
+      }
+      .contact-bubble.email:hover {
+        background-color: #fbc02d;
+        color: #0d233a;
+        border-color: #fbc02d;
+        transform: translateY(-2px);
+      }
+
+      /* התאמות למובייל */
+      @media (max-width: 768px) {
+        .services-grid {
+          grid-template-columns: 1fr;
+          gap: 25px;
+        }
+
+        .about-container,
+        .contact-container {
+          grid-template-columns: 1fr;
+          gap: 40px;
+        }
+
+        .about-badge {
+          position: relative;
+          bottom: auto;
+          right: auto;
+          margin-top: -30px;
+          margin-right: 20px;
+          display: inline-block;
+        }
+
+        .testimonial-card {
+          flex: 0 0 280px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- סרגל ניווט עליון -->
+    <header>
+      <div class="logo">
+        <img src="images/logo.png" alt="לוגו העסק" class="logo-img" />
+      </div>
+
+      <nav>
+        <ul>
+          <li><a href="#home" class="active">בית</a></li>
+          <li><a href="#about">עלינו</a></li>
+          <li><a href="#services">שירותים</a></li>
+          <li><a href="#contact">צור קשר</a></li>
+        </ul>
+      </nav>
+
+      <a href="#contact" class="btn-header">להזמנת ייעוץ</a>
+    </header>
+
+    <!-- אזור מרכזי -->
+    <section id="home" class="hero">
+      <div class="hero-overlay"></div>
+      <div class="hero-content">
+        <h1 class="hero-title">
+          שקט נפשי מול רשויות המס – הנהלת חשבונות שעובדת בשבילך
+        </h1>
+        <p class="hero-subtitle">
+          ליווי אישי, חיסכון במס, וניהול פיננסי מדויק שמאפשר לך להתמקד במה שחשוב
+          –
+        </p>
+        <div class="hero-highlight">בצמיחה של העסק שלך</div>
+        <a href="#contact" class="btn-main">להשארת פרטים</a>
+      </div>
+    </section>
+
+    <!-- אזור עלינו -->
+    <section id="about" class="about-section">
+      <div class="about-container">
+        <div class="about-image-wrapper">
+          <img
+            src="images/aboutIMG.png"
+            alt="מקצועיות וראיית חשבון"
+            class="about-img"
+          />
+          <div class="about-badge">
+            <h4>100%</h4>
+            <p>מחויבות ושקט פיננסי</p>
+          </div>
+        </div>
+
+        <div class="about-content">
+          <span class="section-tagline">קצת עלינו</span>
+          <h2 class="about-title">
+            מקצועיות, שקיפות וליווי אישי לכל אורך הדרך
+          </h2>
+          <p class="about-text">
+            אנו משרד הנהלת חשבונות וייעוץ פיננסי המלווה עסקים, חברות ועצמאיים
+            בדרך לצמיחה בטוחה. החזון שלנו הוא לפשט עבורך את המורכבות של עולם
+            המס, להבטיח ניצול מקסימלי של הזכויות שלך ולהעניק לך ראש שקט להתמקד
+            בפיתוח העסק.
+          </p>
+
+          <ul class="about-features">
+            <li>
+              <svg
+                width="22"
+                height="22"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="#0d233a"
+                stroke-width="2.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <polyline points="20 6 9 17 4 12"></polyline>
+              </svg>
+              ליווי אישי ואינטנסיבי המותאם לצרכים של העסק שלך
+            </li>
+            <li>
+              <svg
+                width="22"
+                height="22"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="#0d233a"
+                stroke-width="2.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <polyline points="20 6 9 17 4 12"></polyline>
+              </svg>
+              תכנון מס מתקדם לחיסכון מרבי ומיצוי זכויות מלא
+            </li>
+            <li>
+              <svg
+                width="22"
+                height="22"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="#0d233a"
+                stroke-width="2.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <polyline points="20 6 9 17 4 12"></polyline>
+              </svg>
+              זמינות גבוהה, שקיפות מוחלטת ומענה מהיר לכל שאלה
+            </li>
+          </ul>
+
+          <!-- <button class="btn-offer">לשיחת ייעוץ ראשונית</button> -->
+        </div>
+      </div>
+    </section>
+
+    <!-- אזור שירותים -->
+    <section id="services" class="services-section">
+      <div class="services-container">
+        <span class="section-tagline">המומחיות שלנו</span>
+        <h2 class="section-title">שירותי ראיית חשבון ופיננסים</h2>
+        <div class="services-grid">
+          <div class="service-card">
+            <div class="service-icon">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="26"
+                height="26"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="#0d233a"
+                stroke-width="1.8"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect>
+                <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path>
+              </svg>
+            </div>
+            <h3>ייעוץ עסקי ופיננסי</h3>
+            <p>
+              תכנון פיננסי מדויק, ניהול תקציב וליווי אישי לעסק שלך לבניית
+              אסטרטגיה המובילה לחיסכון מרבי במס.
+            </p>
+          </div>
+
+          <div class="service-card">
+            <div class="service-icon">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="26"
+                height="26"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="#0d233a"
+                stroke-width="1.8"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <line x1="18" y1="20" x2="18" y2="10"></line>
+                <line x1="12" y1="20" x2="12" y2="4"></line>
+                <line x1="6" y1="20" x2="6" y2="14"></line>
+              </svg>
+            </div>
+            <h3>חשבות וגליונות שכר</h3>
+            <p>
+              מיקור חוץ מקצועי לניהול השכר בעסק. עבודה חלקה, מדויקת ושקופה
+              המותאמת לצרכים המשתנים של החברה.
+            </p>
+          </div>
+
+          <div class="service-card">
+            <div class="service-icon">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="26"
+                height="26"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="#0d233a"
+                stroke-width="1.8"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path
+                  d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"
+                ></path>
+                <polyline points="14 2 14 8 20 8"></polyline>
+                <line x1="16" y1="13" x2="8" y2="13"></line>
+                <line x1="16" y1="17" x2="8" y2="17"></line>
+              </svg>
+            </div>
+            <h3>הכנה והגשת דוחות מס</h3>
+            <p>
+              שירותי הכנה והגשת דוחות תקופתיים ושנתיים בצורה מקצועית עבור חברות,
+              עסקים עצמאיים ולקוחות פרטיים.
+            </p>
+          </div>
+        </div>
+
+        <div class="quick-contact-wrapper">
+          <button
+            type="button"
+            class="quick-contact-toggle"
+            onclick="toggleQuickContact(this)"
+          >
+            <span class="toggle-text">ליעוץ אישי</span>
+            <span class="toggle-icon">▼</span>
+          </button>
+
+          <div class="quick-contact-menu" id="quickContactMenu">
+            <a
+              href="https://wa.me/972501234567"
+              target="_blank"
+              class="contact-bubble whatsapp"
+            >
+              <div class="bubble-icon">
+                <svg
+                  width="22"
+                  height="22"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                >
+                  <path
+                    d="M12.012 2c-5.506 0-9.989 4.478-9.99 9.984 0 1.763.459 3.486 1.332 5.003l-1.416 5.17 5.291-1.387c1.467.8 3.118 1.222 4.781 1.223h.004c5.506 0 9.989-4.478 9.99-9.984 0-2.668-1.039-5.176-2.926-7.062a9.928 9.928 0 0 0-7.066-2.947zm0 18.156h-.003a8.17 8.17 0 0 1-4.167-1.139l-.299-.178-3.097.812.826-3.018-.195-.311a8.169 8.169 0 0 1-1.253-4.338c0-4.509 3.67-8.178 8.181-8.178 2.185 0 4.239.851 5.783 2.396a8.132 8.132 0 0 1 2.392 5.784c0 4.51-3.67 8.18-8.17 8.18z"
+                  />
+                </svg>
+              </div>
+              <span>וואטסאפ</span>
+            </a>
+
+            <a href="tel:0501234567" class="contact-bubble call">
+              <div class="bubble-icon">
+                <svg
+                  width="20"
+                  height="20"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <path
+                    d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"
+                  ></path>
+                </svg>
+              </div>
+              <span>חיוג</span>
+            </a>
+
+            <a
+              href="mailto:shirataieb26@gmail.com"
+              class="contact-bubble email"
+            >
+              <div class="bubble-icon">
+                <svg
+                  width="20"
+                  height="20"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <path
+                    d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"
+                  ></path>
+                  <polyline points="22,6 12,13 2,6"></polyline>
+                </svg>
+              </div>
+              <span>מייל</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- אזור המלצות -->
+    <section id="testimonials" class="testimonials-section">
+      <div class="testimonials-container">
+        <span class="section-tagline">מה הלקוחות שלנו אומרים</span>
+        <h2 class="section-title">לקוחות ממליצים על השירות שלנו</h2>
+
+        <!-- קונטיינר הנגלל הצידה -->
+        <div class="testimonials-slider">
+          <div class="testimonial-card">
+            <div>
+              <div class="quote-icon">“</div>
+              <p class="testimonial-text">
+                חוסר הוודאות מול רשויות המס תמיד הציף אותי בחרדה. מאז שהגעתי
+                למשרד, יש לי שקט נפשי מלא. טיפול מסור, מקצועי ומדויק.
+              </p>
+            </div>
+            <div class="testimonial-author">
+              <div class="author-name">דניאל כהן</div>
+              <div class="author-role">בעלים, סטודיו לעיצוב</div>
+            </div>
+          </div>
+
+          <div class="testimonial-card">
+            <div>
+              <div class="quote-icon">“</div>
+              <p class="testimonial-text">
+                תכנון המס שעשינו בתחילת השנה חסך לעסק שלנו עשרות אלפי שקלים.
+                הזמינות והמענה המהיר לכל שאלה שווים הכל.
+              </p>
+            </div>
+            <div class="testimonial-author">
+              <div class="author-name">מיכל לוי</div>
+              <div class="author-role">מנכ״לית חברת הייטק</div>
+            </div>
+          </div>
+
+          <div class="testimonial-card">
+            <div>
+              <div class="quote-icon">“</div>
+              <p class="testimonial-text">
+                הנהלת חשבונות ושכר ברמה הגבוהה ביותר. הכל שקוף, מאורגן ומטופל
+                בזמן ללא תקלות. ממליץ בחום לכל עצמאי!
+              </p>
+            </div>
+            <div class="testimonial-author">
+              <div class="author-name">יוסי אברהם</div>
+              <div class="author-role">יועץ עסקי</div>
+            </div>
+          </div>
+
+          <div class="testimonial-card">
+            <div>
+              <div class="quote-icon">“</div>
+              <p class="testimonial-text">
+                כעסק בתחילת הדרך קיבלתי ליווי צמוד והסברים בגובה העיניים על כל
+                דוח ודוח. הרגשתי שיש על מי לסמוך מהרגע הראשון.
+              </p>
+            </div>
+            <div class="testimonial-author">
+              <div class="author-name">שירה פרץ</div>
+              <div class="author-role">יזמית בתחום המזון</div>
+            </div>
+          </div>
+
+          <div class="testimonial-card">
+            <div>
+              <div class="quote-icon">“</div>
+              <p class="testimonial-text">
+                הדיוק בדוחות וההקפדה על כל הפרטים הקטנים חוסכים לנו המון זמן יקר
+                בדיווחים לרשויות. משרד ברמה הגבוהה ביותר.
+              </p>
+            </div>
+            <div class="testimonial-author">
+              <div class="author-name">אביתר שלום</div>
+              <div class="author-role">מנהל תפעול</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- אזור צור קשר -->
+    <section id="contact" class="contact-section">
+      <div class="contact-container">
+        <!-- פרטי התקשרות -->
+        <div class="contact-info">
+          <span class="section-tagline">דברו איתנו</span>
+          <h2 class="contact-title">נשמח לייעץ ולענות על כל שאלה</h2>
+          <p class="contact-desc">
+            משאירים פרטים בטופס או פונים אלינו ישירות, וחוזרים אליכם בהקדם עם כל
+            המידע והפתרונות הפיננסיים המותאמים לעסק שלכם.
+          </p>
+
+          <div class="info-list">
+            <div class="info-item">
+              <div class="info-icon">
+                <svg
+                  width="22"
+                  height="22"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="#0d233a"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path
+                    d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"
+                  ></path>
+                </svg>
+              </div>
+              <div class="info-text">
+                <h4>טלפון להתקשרות</h4>
+                <p>
+                  <a href="tel:031234567">03-1234567</a> /
+                  <a href="tel:0501234567">050-1234567</a>
+                </p>
+              </div>
+            </div>
+
+            <div class="info-item">
+              <div class="info-icon">
+                <svg
+                  width="22"
+                  height="22"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="#0d233a"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path
+                    d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"
+                  ></path>
+                  <polyline points="22,6 12,13 2,6"></polyline>
+                </svg>
+              </div>
+              <div class="info-text">
+                <h4>דואר אלקטרוני</h4>
+                <p>
+                  <a href="mailto:office@example.co.il">office@example.co.il</a>
+                </p>
+              </div>
+            </div>
+
+            <div class="info-item">
+              <div class="info-icon">
+                <svg
+                  width="22"
+                  height="22"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="#0d233a"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path
+                    d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"
+                  ></path>
+                  <circle cx="12" cy="10" r="3"></circle>
+                </svg>
+              </div>
+              <div class="info-text">
+                <h4>כתובת המשרד</h4>
+                <p>רחוב המלאכה 12, תל אביב</p>
+              </div>
+            </div>
+
+            <div class="info-item">
+              <div class="info-icon">
+                <svg
+                  width="22"
+                  height="22"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="#0d233a"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <circle cx="12" cy="12" r="10"></circle>
+                  <polyline points="12 6 12 12 16 14"></polyline>
+                </svg>
+              </div>
+              <div class="info-text">
+                <h4>שעות פעילות</h4>
+                <p>א' - ה': 08:30 - 17:00</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- כרטיס הטופס המעוצב -->
+        <div class="contact-card">
+          <h3>השארת פרטים</h3>
+
+          <form id="contactForm" onsubmit="submitContactForm(event)">
+            <div class="form-group">
+              <input
+                type="text"
+                id="contactName"
+                placeholder="שם מלא"
+                required
+              />
+            </div>
+            <div class="form-group">
+              <input
+                type="tel"
+                id="contactPhone"
+                placeholder="מספר טלפון"
+                required
+              />
+            </div>
+            <div class="form-group">
+              <input
+                type="email"
+                id="contactEmail"
+                placeholder="אימייל"
+                required
+              />
+            </div>
+            <div class="form-group">
+              <textarea
+                id="contactMessage"
+                placeholder="הודעה (רשות)"
+                rows="3"
+              ></textarea>
+            </div>
+
+            <button type="submit" class="submit-btn" id="submitBtn">
+              שלח הודעה
+            </button>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <!-- פוטר תחתון -->
+    <footer>
+      <p>© כל הזכויות שמורות - משרד הנהלת חשבונות וייעוץ פיננסי</p>
+    </footer>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        // 1. זיהוי מיקום הגלילה וסימון הקישור הפעיל בטאבים
+        const sections = document.querySelectorAll("section[id]");
+        const navLinks = document.querySelectorAll("nav ul li a");
+
+        const observerOptions = {
+          root: null,
+          rootMargin: "-20% 0px -60% 0px",
+          threshold: 0,
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              const id = entry.target.getAttribute("id");
+              navLinks.forEach((link) => {
+                link.classList.toggle(
+                  "active",
+                  link.getAttribute("href") === `#${id}`,
+                );
+              });
+            }
+          });
+        }, observerOptions);
+
+        sections.forEach((section) => observer.observe(section));
+
+        // 2. שינוי מראה ה-Header בזמן גלילה
+        const header = document.querySelector("header");
+        window.addEventListener("scroll", () => {
+          if (window.scrollY > 50) {
+            header.classList.add("scrolled");
+          } else {
+            header.classList.remove("scrolled");
+          }
+        });
+      });
+
+      // 3. תפריט יצירת קשר מהיר (וואטסאפ / חיוג / מייל)
+      function toggleQuickContact(button) {
+        const wrapper = button.closest(".quick-contact-wrapper");
+        wrapper.classList.toggle("active");
+      }
+
+      // סגירת התפריט בלחיצה מחוץ לאזור
+      document.addEventListener("click", function (event) {
+        const wrapper = document.querySelector(".quick-contact-wrapper");
+        if (wrapper && !wrapper.contains(event.target)) {
+          wrapper.classList.remove("active");
+        }
+      });
+
+      // 4. שליחת טופס יצירת קשר לשרת
+      async function submitContactForm(event) {
+        event.preventDefault(); // מונע את רענון הדף
+
+        const btn = document.getElementById("submitBtn");
+        btn.disabled = true;
+        btn.innerText = "שולח...";
+
+        const data = {
+          name: document.getElementById("contactName").value,
+          phone: document.getElementById("contactPhone").value,
+          email: document.getElementById("contactEmail").value,
+          message: document.getElementById("contactMessage").value,
+        };
+
+        try {
+          const response = await fetch("http://localhost:3000/api/contact", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(data),
+          });
+
+          if (response.ok) {
+            alert("הפרטים נשלחו בהצלחה!");
+            document.getElementById("contactForm").reset();
+          } else {
+            alert("אירעה שגיאה בשליחה, נסה שוב.");
+          }
+        } catch (error) {
+          console.error("Error:", error);
+          alert("לא ניתן להתחבר לשרת.");
+        } finally {
+          btn.disabled = false;
+          btn.innerText = "שלח הודעה";
+        }
+      }
+    </script>
+  </body>
+</html>
